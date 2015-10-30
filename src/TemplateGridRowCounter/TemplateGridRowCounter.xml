@@ -6,7 +6,7 @@
     <icon />
 
     <properties>
-        <property key="startZero" type="boolean">
+        <property key="startZero" type="boolean" defaultValue="false">
             <caption>Start at zero</caption>
             <category>Appearance</category>
             <description>Boolean to set if the counter should start at zero (instead of one).</description>

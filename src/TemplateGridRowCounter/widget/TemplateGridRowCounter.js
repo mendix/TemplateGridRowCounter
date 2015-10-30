@@ -17,6 +17,7 @@
 define([
     "dojo/_base/declare",
     "mxui/widget/_WidgetBase",
+	"dijit/_TemplatedMixin",
     "mxui/dom",
     "dojo/dom",
     "dojo/dom-prop",
@@ -28,13 +29,34 @@ define([
     "dojo/_base/lang",
     "dojo/text",
     "dojo/html",
-], function(declare, _WidgetBase, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, dojoLang, dojoText, dojoHtml) {
+	"dojo/text!TemplateGridRowCounter/widget/template/TemplateGridRowCounter.html"
+], function(declare, _WidgetBase, _templated, dom, dojoDom, dojoProp, dojoGeometry, dojoClass, dojoStyle, dojoConstruct, dojoArray, dojoLang, dojoText, dojoHtml, widgetTemplate) {
     "use strict";
 
-    return declare("TemplateGridRowCounter.widget.TemplateGridRowCounter", [ _WidgetBase ], {
+    return declare("TemplateGridRowCounter.widget.TemplateGridRowCounter", [_WidgetBase, _templated], {
+		templateString: widgetTemplate,
+		
+		counterNode : null,
+		
         postCreate: function () {
-			debugger;
-        },
+			var node = this,
+				counter = -1;
+			
+			do {
+				if (node.name && node.name.startsWith("mx-name-index-")) {
+					counter = node.name.split("mx-name-index-")[1];
+					break;
+				}
+			} while (node = node.getParent());
+			
+			if (counter >= 0) {
+				if (!this.startZero)
+					counter++;
+				
+				dojoHtml.set(this.counterNode, counter+"");
+			}
+        }
+	});
 });
 
 require(["TemplateGridRowCounter/widget/TemplateGridRowCounter"], function() {
