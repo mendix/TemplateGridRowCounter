@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="TemplateGridRowCounter.widget.TemplateGridRowCounter" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>TemplateGridRowCounter</name>
+    <description>This widget places a counter in a templategrid cell corresponding to the cell's number.</description>
+
+    <icon />
+
+    <properties>
+        <property key="startZero" type="boolean">
+            <caption>Start at zero</caption>
+            <category>Appearance</category>
+            <description>Boolean to set if the counter should start at zero (instead of one).</description>
+        </property>
+    </properties>
+</widget>
+
